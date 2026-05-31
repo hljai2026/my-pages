@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYC — Sara Bareilles 🎶</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f7;
+      color: #1d1d1f;
+      padding-bottom: 40px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white;
+      padding: 32px 20px 24px;
+      text-align: center;
+    }
+
+    header .emoji { font-size: 36px; margin-bottom: 8px; }
+    header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    header p { font-size: 14px; opacity: 0.75; }
+
+    .bus-banner {
+      background: #e8f5e9;
+      border-left: 4px solid #43a047;
+      margin: 16px;
+      padding: 14px 16px;
+      border-radius: 10px;
+    }
+
+    .bus-banner h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #43a047; margin-bottom: 8px; }
+
+    .bus-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 14px;
+    }
+
+    .bus-row:not(:last-child) { border-bottom: 1px solid #c8e6c9; padding-bottom: 8px; margin-bottom: 2px; }
+
+    .bus-time { font-weight: 700; font-size: 16px; }
+    .bus-arrow { color: #888; font-size: 12px; }
+    .bus-price { color: #43a047; font-weight: 600; }
+    .bus-detail { font-size: 12px; color: #666; margin-top: 2px; }
+
+    .section {
+      margin: 16px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #888;
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .day-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .day-header {
+      padding: 14px 16px;
+      font-weight: 700;
+      font-size: 15px;
+      color: white;
+    }
+
+    .day-header.quinta { background: #1565C0; }
+    .day-header.sexta { background: #6a1b9a; }
+
+    .timeline {
+      padding: 8px 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      padding: 10px 16px;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .timeline-item:not(:last-child) {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .time-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #888;
+      min-width: 52px;
+      padding-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .timeline-content { flex: 1; }
+
+    .timeline-content .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1d1d1f;
+      line-height: 1.3;
+    }
+
+    .timeline-content .subtitle {
+      font-size: 12px;
+      color: #888;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .highlight {
+      background: #fff8e1;
+      border-radius: 10px;
+    }
+
+    .highlight .time-label { color: #f57c00; }
+    .highlight .title { color: #e65100; }
+
+    .address-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .address-item {
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .address-item:not(:last-child) { border-bottom: 1px solid #f0f0f0; }
+
+    .address-item:active { background: #f5f5f7; }
+
+    .addr-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .addr-icon.hostel { background: #e3f2fd; }
+    .addr-icon.show { background: #fce4ec; }
+    .addr-icon.bus { background: #e8f5e9; }
+    .addr-icon.museum { background: #fff3e0; }
+
+    .addr-info .name { font-size: 14px; font-weight: 600; }
+    .addr-info .addr { font-size: 12px; color: #888; margin-top: 2px; }
+    .addr-info .tap { font-size: 11px; color: #007aff; margin-top: 2px; }
+
+    /* Checklist */
+    .checklist-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .check-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+      padding: 12px 16px 4px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      padding: 11px 16px;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .check-item:not(:last-child) { border-bottom: 1px solid #f5f5f5; }
+    .check-item:active { background: #f5f5f7; }
+
+    .check-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #34c759;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .check-item label {
+      font-size: 14px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .check-item input:checked + label {
+      text-decoration: line-through;
+      color: #bbb;
+    }
+
+    .info-card {
+      background: #fff8e1;
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .info-card h4 { font-size: 13px; color: #f57c00; margin-bottom: 8px; font-weight: 700; }
+    .info-card p { font-size: 13px; line-height: 1.6; color: #555; }
+    .info-card strong { color: #1d1d1f; }
+
+    .weather-card {
+      background: white;
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      gap: 16px;
+    }
+
+    .weather-day {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f5f5f7;
+    }
+
+    .weather-day .wday { font-size: 12px; font-weight: 700; color: #888; margin-bottom: 4px; }
+    .weather-day .wtemp { font-size: 22px; font-weight: 700; }
+    .weather-day .wdesc { font-size: 11px; color: #888; margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="emoji">🎶</div>
+  <h1>NYC — Sara Bareilles</h1>
+  <p>4–5 de junho de 2026</p>
+</header>
+
+<!-- PASSAGEM -->
+<div class="section">
+  <div class="section-title">Passagem — Peter Pan ✅ Comprado</div>
+  <div class="bus-banner">
+    <h3>Ida · Quinta 4/jun</h3>
+    <div class="bus-row">
+      <div>
+        <div class="bus-time">7:00 AM</div>
+        <div class="bus-detail">Worcester Union Station</div>
+      </div>
+      <div class="bus-arrow">→ 3h55m →</div>
+      <div style="text-align:right">
+        <div class="bus-time">10:55 AM</div>
+        <div class="bus-detail">Port Authority, NYC</div>
+      </div>
+    </div>
+    <div class="bus-row" style="padding-top:8px">
+      <span style="font-size:13px;color:#555">Peter Pan Lines · $44.98</span>
+      <span class="bus-price">✓ Pago</span>
+    </div>
+  </div>
+
+  <div class="bus-banner" style="margin-top:0;background:#e8eaf6;border-color:#5c6bc0">
+    <h3 style="color:#5c6bc0">Volta · Sexta 5/jun</h3>
+    <div class="bus-row">
+      <div>
+        <div class="bus-time">8:15 PM</div>
+        <div class="bus-detail">Port Authority, NYC</div>
+      </div>
+      <div class="bus-arrow">→ 3h55m →</div>
+      <div style="text-align:right">
+        <div class="bus-time">12:10 AM</div>
+        <div class="bus-detail">Worcester Union Station</div>
+      </div>
+    </div>
+    <div class="bus-row" style="padding-top:8px">
+      <span style="font-size:13px;color:#555">Peter Pan Lines · $54.98</span>
+      <span style="color:#5c6bc0;font-weight:600">✓ Pago</span>
+    </div>
+  </div>
+</div>
+
+<!-- CLIMA -->
+<div class="section">
+  <div class="section-title">Clima</div>
+  <div class="weather-card">
+    <div class="weather-day">
+      <div class="wday">QUI 4/JUN</div>
+      <div class="wtemp">77°F</div>
+      <div class="wdesc">~25°C · Ensolarado</div>
+    </div>
+    <div class="weather-day">
+      <div class="wday">SEX 5/JUN</div>
+      <div class="wtemp">76°F</div>
+      <div class="wdesc">~24°C · Possível chuva</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROTEIRO QUINTA -->
+<div class="section">
+  <div class="section-title">Roteiro — Quinta 4/jun</div>
+  <div class="day-card">
+    <div class="day-header quinta">Quinta-feira · Dia do show 🎶</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="time-label">7:00 AM</div>
+        <div class="timeline-content">
+          <div class="title">🚌 Ônibus parte de Worcester</div>
+          <div class="subtitle">Union Station · Peter Pan Lines</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">10:55 AM</div>
+        <div class="timeline-content">
+          <div class="title">🗽 Chega em NYC!</div>
+          <div class="subtitle">Port Authority Bus Terminal · 42nd St & 8th Ave</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">11h – 13h</div>
+        <div class="timeline-content">
+          <div class="title">🌆 Explorar Midtown</div>
+          <div class="subtitle">Times Square, 5th Ave · Almoçar por lá</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">13h – 14h</div>
+        <div class="timeline-content">
+          <div class="title">🚇 Subway → Hostel</div>
+          <div class="subtitle">Linha 1 de Times Square → 103rd St · Deixar mochila no hostel (guardam antes do check-in)</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">14h – 16h</div>
+        <div class="timeline-content">
+          <div class="title">🌳 Upper West Side / Central Park</div>
+          <div class="subtitle">Passeio livre · café · Columbus Ave</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">16h</div>
+        <div class="timeline-content">
+          <div class="title">🏨 Check-in Kama Hostel</div>
+          <div class="subtitle">36 W 106th St · Frescar e trocar de roupa</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">17h30</div>
+        <div class="timeline-content">
+          <div class="title">🚶‍♀️ Sair andando pela Broadway</div>
+          <div class="subtitle">Descer devagar rumo ao show · parar pra jantar pelo caminho (~90th ou 85th St)</div>
+        </div>
+      </div>
+
+      <div class="timeline-item highlight">
+        <div class="time-label">19h</div>
+        <div class="timeline-content">
+          <div class="title">⭐ Sara Bareilles — Beacon Theater</div>
+          <div class="subtitle">2124 Broadway (74th/75th St) · Chegar 18h45</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">~21h30</div>
+        <div class="timeline-content">
+          <div class="title">🚖 Uber de volta ao hostel</div>
+          <div class="subtitle">74th → 106th pela Broadway · ~$12–18 · 10 min</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ROTEIRO SEXTA -->
+<div class="section">
+  <div class="section-title">Roteiro — Sexta 5/jun</div>
+  <div class="day-card">
+    <div class="day-header sexta">Sexta-feira · Museu + Parque + Volta 🏛️</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="time-label">até 11h</div>
+        <div class="timeline-content">
+          <div class="title">🧳 Check-out</div>
+          <div class="subtitle">Pedir pro hostel guardar a mochila</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">11h – 14h</div>
+        <div class="timeline-content">
+          <div class="title">🦕 American Museum of Natural History</div>
+          <div class="subtitle">79th & Central Park West · 10 min a pé do hostel</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">14h – 16h30</div>
+        <div class="timeline-content">
+          <div class="title">🌿 Central Park</div>
+          <div class="subtitle">Leitura, sol, descanso · 76°F — vai estar lindo</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">17h</div>
+        <div class="timeline-content">
+          <div class="title">🎒 Buscar a mochila no hostel</div>
+          <div class="subtitle">Kama · 36 W 106th St</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">17h30</div>
+        <div class="timeline-content">
+          <div class="title">🚇 Subway para Port Authority</div>
+          <div class="subtitle">Linha 1 de 103rd St → 42nd St · ~20 min</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">18h</div>
+        <div class="timeline-content">
+          <div class="title">🍔 Jantar perto da Port Authority</div>
+          <div class="subtitle">42nd St tem opções de todos os preços</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time-label">19h45</div>
+        <div class="timeline-content">
+          <div class="title">🚌 Na Port Authority — embarque</div>
+          <div class="subtitle">Gate verificar no app Peter Pan · chegar 30 min antes</div>
+        </div>
+      </div>
+
+      <div class="timeline-item highlight">
+        <div class="time-label">20h15</div>
+        <div class="timeline-content">
+          <div class="title">🏠 Ônibus para Worcester</div>
+          <div class="subtitle">Chega em Union Station às 00h10</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ENDEREÇOS -->
+<div class="section">
+  <div class="section-title">Endereços (toque para abrir no mapa)</div>
+  <div class="address-card">
+
+    <a class="address-item" href="https://maps.apple.com/?address=36+W+106th+St,+New+York,+NY+10025" target="_blank">
+      <div class="addr-icon hostel">🏨</div>
+      <div class="addr-info">
+        <div class="name">Kama Central Park Hostel</div>
+        <div class="addr">36 W 106th Street, Upper West Side</div>
+        <div class="tap">Toque para abrir no Maps</div>
+      </div>
+    </a>
+
+    <a class="address-item" href="https://maps.apple.com/?address=2124+Broadway,+New+York,+NY+10023" target="_blank">
+      <div class="addr-icon show">🎶</div>
+      <div class="addr-info">
+        <div class="name">Beacon Theater</div>
+        <div class="addr">2124 Broadway (74th/75th St)</div>
+        <div class="tap">Toque para abrir no Maps</div>
+      </div>
+    </a>
+
+    <a class="address-item" href="https://maps.apple.com/?address=625+8th+Ave,+New+York,+NY+10018" target="_blank">
+      <div class="addr-icon bus">🚌</div>
+      <div class="addr-info">
+        <div class="name">Port Authority Bus Terminal</div>
+        <div class="addr">625 8th Ave & 42nd St, Midtown</div>
+        <div class="tap">Toque para abrir no Maps</div>
+      </div>
+    </a>
+
+    <a class="address-item" href="https://maps.apple.com/?address=200+Central+Park+W,+New+York,+NY+10024" target="_blank">
+      <div class="addr-icon museum">🦕</div>
+      <div class="addr-info">
+        <div class="name">American Museum of Natural History</div>
+        <div class="addr">79th St & Central Park West</div>
+        <div class="tap">Toque para abrir no Maps</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- DICAS RÁPIDAS -->
+<div class="section">
+  <div class="info-card">
+    <h4>⚡ Dicas rápidas</h4>
+    <p>
+      <strong>Subway:</strong> Linha 1 (vermelha) · 103rd St ↔ Times Square/42nd St<br><br>
+      <strong>Uber pós-show:</strong> 74th → 106th pela Broadway · ~$12–18 · 10 min<br><br>
+      <strong>Hostel:</strong> Pedir pra guardar mochila depois do checkout (gratuito)<br><br>
+      <strong>Ônibus volta:</strong> chegar na Port Authority às 19h45 · confirmar gate no app Peter Pan<br><br>
+      <strong>Chuva sexta:</strong> levar guarda-chuva pequeno
+    </p>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="section">
+  <div class="section-title">Checklist — O que levar</div>
+  <div class="checklist-card">
+
+    <div class="check-group-title">👗 Roupa</div>
+    <label class="check-item"><input type="checkbox"> <label>Roupa do show (quinta à noite)</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Roupa confortável pra sexta</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Roupa de dormir</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Underwear extra</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Meias confortáveis</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Tênis confortável (não estrear!)</label></label>
+
+    <div class="check-group-title">🪥 Higiene</div>
+    <label class="check-item"><input type="checkbox"> <label>Escova + creme dental</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Desodorante</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Shampoo / condicionador</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Toalha (confirmar se hostel fornece)</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Chinelo pra chuveiro do hostel</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Skincare / maquiagem básica</label></label>
+
+    <div class="check-group-title">😴 Noite no hostel</div>
+    <label class="check-item"><input type="checkbox"> <label>Tampões de ouvido</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Máscara de dormir</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Cadeado pequeno (pra locker)</label></label>
+
+    <div class="check-group-title">📱 Tech + essenciais</div>
+    <label class="check-item"><input type="checkbox"> <label>Carregador do celular</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Powerbank ⚡ (prioritário!)</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Fone de ouvido</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Ingresso Sara Bareilles (digital)</label></label>
+    <label class="check-item"><input type="checkbox"> <label>ID + cartão + cash (~$40–60)</label></label>
+
+    <div class="check-group-title">🎒 Extras</div>
+    <label class="check-item"><input type="checkbox"> <label>Guarda-chuva pequeno / capa de chuva</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Garrafa de água reutilizável</label></label>
+    <label class="check-item"><input type="checkbox"> <label>Snack pra viagem de ônibus</label></label>
+
+  </div>
+</div>
+
+</body>
+</html>
