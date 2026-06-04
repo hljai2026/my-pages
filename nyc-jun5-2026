@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC · Sara Bareilles · Jun 5–6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --cream: #faf8f3;
+    --gold: #c9a84c;
+    --gold-light: #f0e6c8;
+    --blush: #e8d5c4;
+    --sage: #8aab9a;
+    --muted: #7a7a8c;
+    --card: #ffffff;
+    --border: #e8e4dc;
+    --accent: #6b4c8a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    padding-bottom: 3rem;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 2.5rem 1.25rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 0%, rgba(201,168,76,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse at 10% 100%, rgba(107,76,138,0.15) 0%, transparent 60%);
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    line-height: 1.1;
+    position: relative;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: rgba(250,248,243,0.65);
+    position: relative;
+    font-weight: 300;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 100px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+  }
+
+  /* NAV TABS */
+  .tabs {
+    display: flex;
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(250,248,243,0.45);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* SECTIONS */
+  .section { display: none; padding: 1.25rem; }
+  .section.active { display: block; }
+
+  /* WEATHER BAR */
+  .weather-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .weather-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    text-align: center;
+  }
+  .weather-day { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+  .weather-temp { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--ink); }
+  .weather-desc { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* DAY HEADER */
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0 1rem;
+  }
+  .day-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+  }
+  .day-pill {
+    background: var(--gold);
+    color: var(--ink);
+    border-radius: 100px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* TIMELINE */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold-light), var(--border));
+  }
+
+  .event {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+  .event-dot {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    z-index: 1;
+  }
+  .event.highlight .event-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+    font-size: 0.7rem;
+  }
+  .event.star .event-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(107,76,138,0.2);
+  }
+
+  .event-card {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+  }
+  .event.highlight .event-card {
+    border-color: var(--gold-light);
+    background: #fffdf5;
+  }
+  .event.star .event-card {
+    border-color: rgba(107,76,138,0.25);
+    background: #f9f7fc;
+  }
+
+  .event-time {
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+  }
+  .event-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .event.star .event-title { color: var(--accent); }
+  .event-detail {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    line-height: 1.45;
+  }
+  .event-options {
+    margin-top: 0.5rem;
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .event-options strong { color: var(--ink); }
+
+  /* MAP LINKS */
+  .map-section { margin-top: 1rem; }
+  .map-section h3 {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+  .map-grid { display: flex; flex-direction: column; gap: 0.5rem; }
+  .map-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.15s;
+  }
+  .map-link:active { border-color: var(--gold); }
+  .map-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .map-name { font-size: 0.88rem; font-weight: 500; }
+  .map-addr { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
+  .map-arrow { margin-left: auto; color: var(--muted); font-size: 0.8rem; }
+
+  /* CHECKLIST */
+  .checklist-group { margin-bottom: 1.25rem; }
+  .checklist-group h3 {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    padding-left: 0.25rem;
+  }
+  .checklist-items { display: flex; flex-direction: column; gap: 0.35rem; }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .check-item.done {
+    background: var(--cream);
+    border-color: var(--sage);
+  }
+  .check-item.done .check-label { text-decoration: line-through; color: var(--muted); }
+  .check-box {
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: transparent;
+    transition: all 0.15s;
+  }
+  .check-item.done .check-box {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: white;
+  }
+  .check-label { font-size: 0.85rem; color: var(--ink); }
+
+  /* TIPS */
+  .tips-grid { display: flex; flex-direction: column; gap: 0.6rem; }
+  .tip-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .tip-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+  .tip-text { font-size: 0.82rem; line-height: 1.5; color: var(--ink); }
+  .tip-text strong { font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">June 5–6 · New York City</div>
+  <h1>NYC &<br><em>Sara Bareilles</em></h1>
+  <div class="hero-sub">Beacon Theatre · 74th St · 7:00 PM</div>
+  <div class="hero-badges">
+    <span class="badge">🎟 Show booked ✓</span>
+    <span class="badge">🏨 Kama Hostel ✓</span>
+    <span class="badge">🚌 Peter Pan ✓</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('thu')">Thu 5/Jun</button>
+  <button class="tab" onclick="showTab('fri')">Fri 6/Jun</button>
+  <button class="tab" onclick="showTab('map')">📍 Maps</button>
+  <button class="tab" onclick="showTab('pack')">Pack</button>
+</div>
+
+<!-- THURSDAY -->
+<div id="thu" class="section active">
+  <div class="weather-bar">
+    <div class="weather-card">
+      <div class="weather-day">Thu · Jun 5</div>
+      <div class="weather-temp">79°F</div>
+      <div class="weather-desc">☀️ Sunny · 26°C</div>
+    </div>
+    <div class="weather-card">
+      <div class="weather-day">Fri · Jun 6</div>
+      <div class="weather-temp">76°F</div>
+      <div class="weather-desc">🌦 Some rain · 24°C</div>
+    </div>
+  </div>
+
+  <div class="day-header">
+    <h2>Thursday</h2>
+    <span class="day-pill">🎶 Show day</span>
+  </div>
+
+  <div class="timeline">
+
+    <div class="event">
+      <div class="event-dot">🚌</div>
+      <div class="event-card">
+        <div class="event-time">~11:00 AM</div>
+        <div class="event-title">Arrive Times Square</div>
+        <div class="event-detail">Port Authority Bus Terminal · 42nd St & 8th Ave</div>
+        <div class="event-options">
+          <strong>Walk:</strong> 3.2 mi up Broadway (~65 min)<br>
+          <strong>Subway:</strong> B or C northbound · Times Sq–42nd → 103rd St (~15 min)
+        </div>
+      </div>
+    </div>
+
+    <div class="event highlight">
+      <div class="event-dot">🏨</div>
+      <div class="event-card">
+        <div class="event-time">~12:15 PM</div>
+        <div class="event-title">Drop bags · Kama Hostel</div>
+        <div class="event-detail">36 W 106th St · Upper West Side</div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot">🍕</div>
+      <div class="event-card">
+        <div class="event-time">~12:30 PM → ~1:00 PM</div>
+        <div class="event-title">Head to West Village</div>
+        <div class="event-detail">Subway: B or C southbound · 103rd St → W 4th St (~20 min)</div>
+        <div class="event-options">
+          <strong>Lunch:</strong> Pizza Loves Emily · 35 Downing St
+        </div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot">🚶</div>
+      <div class="event-card">
+        <div class="event-time">~2:00 PM</div>
+        <div class="event-title">Stroll East → Flatiron</div>
+        <div class="event-detail">Bleecker St · Christopher St · Washington Square Park</div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot">⚡</div>
+      <div class="event-card">
+        <div class="event-time">~2:30 PM</div>
+        <div class="event-title">Harry Potter Store</div>
+        <div class="event-detail">935 Broadway · Flatiron · Free entry</div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot">☕</div>
+      <div class="event-card">
+        <div class="event-time">~4:00 PM</div>
+        <div class="event-title">Starbucks Reserve Roastery</div>
+        <div class="event-detail">61 9th Ave · Chelsea · 0.8 mi walk (~15 min) from Harry Potter store</div>
+      </div>
+    </div>
+
+    <div class="event highlight">
+      <div class="event-dot">🏨</div>
+      <div class="event-card">
+        <div class="event-time">~4:25 PM → ~4:45 PM</div>
+        <div class="event-title">Back to hostel · Get ready</div>
+        <div class="event-detail">Subway: A, C or E northbound · 14th St → 59th St Columbus Circle, switch B or C → 103rd St (~20 min)</div>
+        <div class="event-options">1h 15min to get ready 💅</div>
+      </div>
+    </div>
+
+    <div class="event star">
+      <div class="event-dot">⭐</div>
+      <div class="event-card">
+        <div class="event-time">6:00 PM → 7:00 PM</div>
+        <div class="event-title">Sara Bareilles · Beacon Theatre</div>
+        <div class="event-detail">2124 Broadway at 74th St · Arrive by 6:45 PM</div>
+        <div class="event-options">
+          <strong>Walk:</strong> 1.6 mi south on Broadway (~30 min)<br>
+          <strong>Subway:</strong> Line 1 southbound · 103rd → 72nd St (~8 min), then 2 min walk
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FRIDAY -->
+<div id="fri" class="section">
+
+  <div class="day-header">
+    <h2>Friday</h2>
+    <span class="day-pill">🏛 Museum + Park + Bus</span>
+  </div>
+
+  <div class="timeline">
+
+    <div class="event">
+      <div class="event-dot">☕</div>
+      <div class="event-card">
+        <div class="event-time">~8:30 AM</div>
+        <div class="event-title">Breakfast</div>
+        <div class="event-options">
+          <strong>Option A:</strong> Sote Coffee Roasters · 329 Amsterdam Ave at 75th St<br>
+          <strong>Option B:</strong> Maman · 429 Amsterdam Ave at 81st St
+        </div>
+      </div>
+    </div>
+
+    <div class="event highlight">
+      <div class="event-dot">🌳</div>
+      <div class="event-card">
+        <div class="event-time">~9:15 AM → ~10:00 AM</div>
+        <div class="event-title">Central Park</div>
+        <div class="event-detail">Enter at 106th & Central Park West · walk south through the park</div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot">📚</div>
+      <div class="event-card">
+        <div class="event-time">~10:00 AM → ~10:30 AM</div>
+        <div class="event-title">Walk 5th Ave → NY Public Library</div>
+        <div class="event-detail">Exit park at 72nd & 5th · walk south 1.3 mi past the Plaza Hotel</div>
+        <div class="event-options">476 5th Ave at 42nd St · Free · ~45 min<br><strong>Don't miss:</strong> Rose Main Reading Room</div>
+      </div>
+    </div>
+
+    <div class="event star">
+      <div class="event-dot">🎨</div>
+      <div class="event-card">
+        <div class="event-time">~11:30 AM – 2:30 PM</div>
+        <div class="event-title">MoMA</div>
+        <div class="event-detail">11 W 53rd St · 0.5 mi north from Library (~10 min walk) · Tickets booked ✓</div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot">📖</div>
+      <div class="event-card">
+        <div class="event-time">~2:45 PM → ~3:30 PM</div>
+        <div class="event-title">Albertine Books</div>
+        <div class="event-detail">972 5th Ave at 79th St · 1.3 mi north from MoMA (~25 min walk along the park)</div>
+      </div>
+    </div>
+
+    <div class="event highlight">
+      <div class="event-dot">🏨</div>
+      <div class="event-card">
+        <div class="event-time">~3:30 PM → ~4:15 PM</div>
+        <div class="event-title">Back to hostel · Grab bag</div>
+        <div class="event-detail">Subway: 4, 5 or 6 south one stop · 77th → 59th St, switch B or C northbound → 103rd St (~20 min)</div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot">💪</div>
+      <div class="event-card">
+        <div class="event-time">~4:20 PM → ~5:45 PM</div>
+        <div class="event-title">Planet Fitness · Shower up</div>
+        <div class="event-detail">Subway: B or C southbound · 103rd → 42nd St Port Authority (~15 min)<br>Walk north on 8th Ave to Planet Fitness (423 W 55th St) · 15 min</div>
+      </div>
+    </div>
+
+    <div class="event star">
+      <div class="event-dot">🚌</div>
+      <div class="event-card">
+        <div class="event-time">7:00 PM</div>
+        <div class="event-title">Bus departs · Port Authority</div>
+        <div class="event-detail">625 8th Ave at 42nd St · Arrive by 6:30 PM · Confirm gate on Peter Pan app</div>
+        <div class="event-options">→ Arrives Worcester ~11 PM</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAPS -->
+<div id="map" class="section">
+  <div class="map-section">
+    <h3>Tap to open in Maps</h3>
+    <div class="map-grid">
+
+      <a class="map-link" href="https://maps.apple.com/?address=36+W+106th+St,+New+York,+NY+10025" target="_blank">
+        <span class="map-icon">🏨</span>
+        <div>
+          <div class="map-name">Kama Central Park Hostel</div>
+          <div class="map-addr">36 W 106th St · Upper West Side</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=2124+Broadway,+New+York,+NY+10023" target="_blank">
+        <span class="map-icon">🎶</span>
+        <div>
+          <div class="map-name">Beacon Theatre</div>
+          <div class="map-addr">2124 Broadway at 74th St</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=35+Downing+St,+New+York,+NY+10014" target="_blank">
+        <span class="map-icon">🍕</span>
+        <div>
+          <div class="map-name">Pizza Loves Emily</div>
+          <div class="map-addr">35 Downing St · West Village</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=935+Broadway,+New+York,+NY+10010" target="_blank">
+        <span class="map-icon">⚡</span>
+        <div>
+          <div class="map-name">Harry Potter NY</div>
+          <div class="map-addr">935 Broadway · Flatiron</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=61+9th+Ave,+New+York,+NY+10011" target="_blank">
+        <span class="map-icon">☕</span>
+        <div>
+          <div class="map-name">Starbucks Reserve Roastery</div>
+          <div class="map-addr">61 9th Ave · Chelsea</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=476+5th+Ave,+New+York,+NY+10018" target="_blank">
+        <span class="map-icon">📚</span>
+        <div>
+          <div class="map-name">NY Public Library</div>
+          <div class="map-addr">476 5th Ave at 42nd St</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=11+W+53rd+St,+New+York,+NY+10019" target="_blank">
+        <span class="map-icon">🎨</span>
+        <div>
+          <div class="map-name">MoMA</div>
+          <div class="map-addr">11 W 53rd St · Midtown</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=972+5th+Ave,+New+York,+NY+10075" target="_blank">
+        <span class="map-icon">📖</span>
+        <div>
+          <div class="map-name">Albertine Books</div>
+          <div class="map-addr">972 5th Ave at 79th St</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=423+W+55th+St,+New+York,+NY+10019" target="_blank">
+        <span class="map-icon">💪</span>
+        <div>
+          <div class="map-name">Planet Fitness</div>
+          <div class="map-addr">423 W 55th St · Midtown</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+      <a class="map-link" href="https://maps.apple.com/?address=625+8th+Ave,+New+York,+NY+10018" target="_blank">
+        <span class="map-icon">🚌</span>
+        <div>
+          <div class="map-name">Port Authority Bus Terminal</div>
+          <div class="map-addr">625 8th Ave at 42nd St</div>
+        </div>
+        <span class="map-arrow">↗</span>
+      </a>
+
+    </div>
+  </div>
+
+  <div style="margin-top: 1.5rem;">
+    <div class="map-section">
+      <h3>⚡ Quick tips</h3>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">🚇</span>
+        <div class="tip-text"><strong>Your subway hub:</strong> 103rd St station (B/C lines) is right across from the hostel on CPW.</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🎟</span>
+        <div class="tip-text"><strong>Show:</strong> Arrive Beacon Theatre by 6:45 PM. Have ticket on your phone ready.</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🧳</span>
+        <div class="tip-text"><strong>Hostel luggage:</strong> Kama stores bags after checkout for free. Leave by 11 AM Friday, pick up before Port Authority.</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🌦</span>
+        <div class="tip-text"><strong>Friday rain:</strong> Pack a small umbrella. Central Park walk is in the morning — should be fine before showers.</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🚌</span>
+        <div class="tip-text"><strong>Bus home:</strong> Check your gate on the Peter Pan app. Be at Port Authority by 6:30 PM — gates can change.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PACK -->
+<div id="pack" class="section">
+
+  <div class="checklist-group">
+    <h3>👗 Clothes</h3>
+    <div class="checklist-items">
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Show outfit (Thursday night)</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Comfortable Friday outfit</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Sleepwear</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Extra underwear & socks</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Comfortable shoes (broken in!)</span></div>
+    </div>
+  </div>
+
+  <div class="checklist-group">
+    <h3>🪥 Hygiene</h3>
+    <div class="checklist-items">
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Toothbrush + toothpaste</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Deodorant</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Shampoo + conditioner</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Towel (check if hostel provides)</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Shower flip-flops</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Skincare + basic makeup</span></div>
+    </div>
+  </div>
+
+  <div class="checklist-group">
+    <h3>😴 Hostel survival</h3>
+    <div class="checklist-items">
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Earplugs</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Sleep mask</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Small padlock (for locker)</span></div>
+    </div>
+  </div>
+
+  <div class="checklist-group">
+    <h3>📱 Tech + essentials</h3>
+    <div class="checklist-items">
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Phone charger</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Powerbank ⚡ (priority!)</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Earphones</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Sara Bareilles ticket (digital)</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">MoMA ticket (digital) ✓ booked</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">ID + card + cash (~$60)</span></div>
+    </div>
+  </div>
+
+  <div class="checklist-group">
+    <h3>🎒 Extras</h3>
+    <div class="checklist-items">
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Small umbrella / rain jacket</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Reusable water bottle</span></div>
+      <div class="check-item" onclick="toggle(this)"><div class="check-box">✓</div><span class="check-label">Bus snacks</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function toggle(el) {
+    el.classList.toggle('done');
+  }
+</script>
+</body>
+</html>
