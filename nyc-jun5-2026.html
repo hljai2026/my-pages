@@ -125,7 +125,12 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .budget-total { display: flex; justify-content: space-between; padding: 0.55rem 0 0; font-size: 0.9rem; font-weight: 700; }
 
 .checklist-group { margin-bottom: 1.1rem; }
-.check-items { display: flex; flex-direction: column; gap: 0.32rem; }
+.subtabs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.subtab { flex: none; background: var(--card); border: 1px solid var(--border); border-radius: 100px; padding: 0.35rem 0.8rem; font-size: 0.72rem; font-weight: 500; color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; -webkit-tap-highlight-color: transparent; }
+.subtab.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+.subsection { display: none; }
+.subsection.active { display: block; }
+.sub-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.8rem; line-height: 1.5; padding: 0.55rem 0.7rem; background: rgba(0,0,0,0.03); border-radius: 8px; }.check-items { display: flex; flex-direction: column; gap: 0.32rem; }
 .check-item { display: flex; align-items: center; gap: 0.7rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: all 0.15s; }
 .check-item.done { background: var(--sage-pale); border-color: #c0ddd0; }
 .check-item.done .check-label { text-decoration: line-through; color: var(--muted); }
@@ -418,54 +423,75 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 
 <!-- PACK -->
 <div id="pack" class="section">
-  <div class="checklist-group">
-    <div class="sec-head">👗 Clothes</div>
+
+  <!-- SUB-TABS -->
+  <div class="subtabs">
+    <button class="subtab active" onclick="showSub('sub-bag', this)">🎒 In My Bag</button>
+    <button class="subtab" onclick="showSub('sub-thu', this)">🎶 Thu Night</button>
+    <button class="subtab" onclick="showSub('sub-fri', this)">🏛 Fri Checkout</button>
+    <button class="subtab" onclick="showSub('sub-bus', this)">🚌 Bus Home</button>
+  </div>
+
+  <!-- IN MY BAG -->
+  <div id="sub-bag" class="subsection active">
+    <div class="sub-desc">Always-on you. Check this any time you're about to walk out a door.</div>
     <div class="check-items">
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Show outfit (Thursday night)</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Comfortable Friday outfit</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Sleepwear</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Extra underwear & socks</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Broken-in comfortable shoes ⚠️</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Phone charged (or powerbank on you)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Powerbank ⚡</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">ID</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bank card</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Cash ($80)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Sara Bareilles ticket (+ screenshot)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">MoMA ticket (+ screenshot)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Hostel confirmation saved offline</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Umbrella (Fri especially)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Water bottle</span></div>
     </div>
   </div>
-  <div class="checklist-group">
-    <div class="sec-head">🪥 Hygiene</div>
+
+  <!-- THU NIGHT — BEFORE LEAVING FOR SHOW -->
+  <div id="sub-thu" class="subsection">
+    <div class="sub-desc">Before you walk out to Beacon Theatre Thursday evening.</div>
     <div class="check-items">
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Toothbrush + toothpaste</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Deodorant</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Shampoo + conditioner</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Towel (confirm hostel provides)</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Flip-flops for hostel shower</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Skincare + makeup</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Show outfit on ✨</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Makeup / getting ready done</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Phone above 80% (or powerbank full)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Sara Bareilles ticket open + screenshotted</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Know your route (Line 1 from 103rd → 72nd)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Eaten something (long night ahead)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Room key / locker sorted before leaving</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Leaving by 6:00 PM ⚠️</span></div>
     </div>
   </div>
-  <div class="checklist-group">
-    <div class="sec-head">😴 Hostel survival</div>
+
+  <!-- FRI CHECKOUT -->
+  <div id="sub-fri" class="subsection">
+    <div class="sub-desc">Friday morning checkout. Do this before leaving for breakfast.</div>
     <div class="check-items">
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Earplugs</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Sleep mask</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Small padlock (for locker)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Charger unplugged from outlet</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Padlock + locker emptied</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Nothing left under the pillow / mattress</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bag stored at front desk (confirm they have it)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Showered here if skipping Planet Fitness</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Hostel key / wristband returned</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Pick-up time confirmed with front desk</span></div>
     </div>
   </div>
-  <div class="checklist-group">
-    <div class="sec-head">📱 Tech + essentials</div>
+
+  <!-- BEFORE BOARDING BUS -->
+  <div id="sub-bus" class="subsection">
+    <div class="sub-desc">Last check at Port Authority before you board. Do this by 6:15 PM.</div>
     <div class="check-items">
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Phone charger</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Powerbank ⚡ (charge tonight!)</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Earphones</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Sara Bareilles ticket + screenshot</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">MoMA ticket + screenshot</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">ID + card + cash ($80)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Gate confirmed on Peter Pan app</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bus ticket on phone (+ screenshot)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bag with you (not at hostel)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Phone charged enough for the ride</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Eaten something before boarding</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Nothing left at the hostel</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">ID + card + cash on you</span></div>
     </div>
   </div>
-  <div class="checklist-group">
-    <div class="sec-head">🎒 Extras</div>
-    <div class="check-items">
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Small umbrella / rain jacket</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Reusable water bottle</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Snacks for bus rides</span></div>
-    </div>
-  </div>
+
 </div>
 
 <!-- SOS -->
@@ -542,6 +568,13 @@ function toggle(card) {
 }
 
 function tick(el) { el.classList.toggle('done'); }
+
+function showSub(id, btn) {
+  document.querySelectorAll('.subsection').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.subtab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
 
 
 </script>
