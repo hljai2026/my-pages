@@ -8,22 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #12111a;
-  --bg: #f6f3ee;
-  --card: #ffffff;
-  --gold: #b8962e;
-  --gold-pale: #f5edda;
-  --gold-border: #e2d5a8;
-  --rose: #c4606a;
-  --rose-pale: #fdf0f1;
-  --sage: #5a8a72;
-  --sage-pale: #edf5f0;
-  --blue: #3a6fa8;
-  --blue-pale: #edf2fa;
-  --muted: #7a7585;
-  --border: #e5e0d8;
-  --warn: #d4761a;
-  --warn-pale: #fef4ea;
+  --ink: #12111a; --bg: #f6f3ee; --card: #ffffff;
+  --gold: #b8962e; --gold-pale: #f5edda; --gold-border: #e2d5a8;
+  --rose: #c4606a; --rose-pale: #fdf0f1;
+  --sage: #5a8a72; --sage-pale: #edf5f0;
+  --blue: #3a6fa8; --blue-pale: #edf2fa;
+  --muted: #7a7585; --border: #e5e0d8;
+  --warn: #d4761a; --warn-pale: #fef4ea;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; padding-bottom: 4rem; }
@@ -37,8 +28,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .hero-badges { display: flex; gap: 0.4rem; margin-top: 1.2rem; flex-wrap: wrap; position: relative; }
 .badge { background: rgba(255,255,255,0.07); border: 1px solid rgba(184,150,46,0.35); border-radius: 100px; padding: 0.25rem 0.65rem; font-size: 0.68rem; color: rgba(255,255,255,0.7); }
 .badge.ok { border-color: rgba(90,138,114,0.5); color: #a8d4bc; }
-
-
 
 .tabs { display: flex; background: var(--ink); border-top: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100; overflow-x: auto; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
@@ -76,6 +65,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .event-title { font-size: 0.93rem; font-weight: 600; line-height: 1.3; }
 .event.star .event-title { color: var(--rose); }
 .event-addr { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+.event-addr a { color: var(--muted); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px; }
 .chevron { float: right; font-size: 0.7rem; color: var(--muted); margin-top: 0.1rem; transition: transform 0.2s; display: inline-block; }
 .event-card.expanded .chevron { transform: rotate(180deg); }
 
@@ -91,6 +81,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .subway-block { background: var(--blue-pale); border: 1px solid #c4d8f0; border-radius: 8px; padding: 0.55rem 0.7rem; font-size: 0.78rem; line-height: 1.55; margin-bottom: 0.4rem; }
 .subway-block strong { color: var(--blue); }
 .stn { color: var(--blue); font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px; -webkit-tap-highlight-color: transparent; }
+.pl { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px; -webkit-tap-highlight-color: transparent; }
 
 .sec-head { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 1.3rem 0 0.65rem; }
 
@@ -124,13 +115,13 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .budget-row .amount { font-weight: 600; }
 .budget-total { display: flex; justify-content: space-between; padding: 0.55rem 0 0; font-size: 0.9rem; font-weight: 700; }
 
-.checklist-group { margin-bottom: 1.1rem; }
 .subtabs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
 .subtab { flex: none; background: var(--card); border: 1px solid var(--border); border-radius: 100px; padding: 0.35rem 0.8rem; font-size: 0.72rem; font-weight: 500; color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; -webkit-tap-highlight-color: transparent; }
 .subtab.active { background: var(--ink); border-color: var(--ink); color: #fff; }
 .subsection { display: none; }
 .subsection.active { display: block; }
-.sub-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.8rem; line-height: 1.5; padding: 0.55rem 0.7rem; background: rgba(0,0,0,0.03); border-radius: 8px; }.check-items { display: flex; flex-direction: column; gap: 0.32rem; }
+.sub-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.8rem; line-height: 1.5; padding: 0.55rem 0.7rem; background: rgba(0,0,0,0.03); border-radius: 8px; }
+.check-items { display: flex; flex-direction: column; gap: 0.32rem; }
 .check-item { display: flex; align-items: center; gap: 0.7rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: all 0.15s; }
 .check-item.done { background: var(--sage-pale); border-color: #c0ddd0; }
 .check-item.done .check-label { text-decoration: line-through; color: var(--muted); }
@@ -139,6 +130,17 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .check-label { font-size: 0.84rem; }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* DECISION TOGGLES */
+.decision-wrap { margin-bottom: 0.4rem; }
+.decision-pills { display: flex; gap: 0.4rem; margin-bottom: 0.5rem; }
+.decision-pill { flex: 1; padding: 0.4rem 0.6rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; text-align: center; cursor: pointer; border: 2px solid var(--border); background: var(--card); color: var(--muted); font-family: 'DM Sans', sans-serif; transition: all 0.15s; -webkit-tap-highlight-color: transparent; }
+.decision-pill.walk.active { background: var(--sage-pale); border-color: var(--sage); color: var(--sage); }
+.decision-pill.subway.active { background: var(--blue-pale); border-color: var(--blue); color: var(--blue); }
+.decision-content { display: none; }
+.decision-content.active { display: block; }
+.time-impact { display: flex; align-items: center; gap: 0.4rem; background: var(--gold-pale); border: 1px solid var(--gold-border); border-radius: 8px; padding: 0.45rem 0.7rem; font-size: 0.75rem; font-weight: 500; color: var(--gold); margin-bottom: 0.4rem; }
+
 .section.active .event { animation: fadeUp 0.25s ease both; }
 .section.active .event:nth-child(1) { animation-delay: 0.03s; }
 .section.active .event:nth-child(2) { animation-delay: 0.06s; }
@@ -165,13 +167,11 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
   <div style="height:1.5rem"></div>
 </div>
 
-
-
 <div class="tabs">
   <button class="tab active" onclick="showTab('thu',this)">Thu 5/Jun</button>
   <button class="tab" onclick="showTab('fri',this)">Fri 6/Jun</button>
   <button class="tab" onclick="showTab('map',this)">📍 Maps</button>
-  <button class="tab" onclick="showTab('pack',this)">Pack</button>
+  <button class="tab" onclick="showTab('pack',this)">✅ Checks</button>
   <button class="tab" onclick="showTab('sos',this)">🆘 SOS</button>
 </div>
 
@@ -184,15 +184,41 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
   <div class="day-label"><h2>Thursday</h2><span class="day-pill">🎶 Show day</span></div>
 
   <div class="timeline">
+
     <div class="event">
       <div class="event-dot">🚌</div>
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~11:00 AM</div>
         <div class="event-title">Arrive Times Square <span class="chevron">▼</span></div>
-        <div class="event-addr">Port Authority · 42nd St & 8th Ave</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=625+8th+Ave,+New+York,+NY+10018" target="_blank">Port Authority · 42nd St & 8th Ave</a></div>
         <div class="event-expand">
-          <div class="subway-block"><div class="expand-label">🚇 To hostel</div><strong>Subway (do this):</strong> B or C northbound · <a class="stn" href="https://maps.apple.com/?q=Times+Square+42nd+St+Subway+Station&ll=40.7549,-73.9873" target="_blank">Times Sq–42nd St</a> → <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a> · ~15 min<br><strong>Walk:</strong> 3.2 mi · ~65 min · skip it, you have a full day</div>
-          <div class="warn-block"><strong>⚠️ Bus late?</strong> If you arrive after 11:30 AM, drop the West Village. Go straight hostel → Harry Potter (~2:30) → Starbucks → get ready. You still make the show fine.</div>
+          <div class="decision-wrap" id="dec-arrive">
+            <div class="decision-pills">
+              <button class="decision-pill walk active" onclick="switchDecision('dec-arrive','walk',this,this.nextElementSibling)">🚶 Walk it</button>
+              <button class="decision-pill subway" onclick="switchDecision('dec-arrive','subway',this.previousElementSibling,this)">🚇 Subway</button>
+            </div>
+            <div class="decision-content walk active">
+              <div class="time-impact">⏱ +50 min to hostel · arrive ~12:15 PM · West Village still totally doable</div>
+              <div class="expand-block">
+                <div class="expand-label">🚶 3.2 mi · ~65 min · straight shot</div>
+                <strong>1.</strong> Exit Port Authority onto <strong>8th Ave</strong>. Turn right (north).<br>
+                <strong>2.</strong> At <strong>59th St</strong>, 8th Ave becomes <strong>Central Park West</strong> — park on your right.<br>
+                <strong>3.</strong> Keep north on CPW past 72nd, 81st, 96th.<br>
+                <strong>4.</strong> At <strong>106th St</strong> turn right — hostel is mid-block on your left.<br><br>
+                Great first walk. You'll pass Times Square energy, Columbus Circle, and arrive feeling oriented.
+              </div>
+            </div>
+            <div class="decision-content subway">
+              <div class="time-impact">⏱ ~15 min · arrive ~11:30 AM · 45 extra minutes for the afternoon</div>
+              <div class="subway-block">
+                <div class="expand-label">🚇 C train · ~15 min</div>
+                <strong>1.</strong> Walk to the corner of <strong>8th Ave & 42nd St</strong>. Enter the <a class="stn" href="https://maps.apple.com/?q=Times+Square+42nd+St+Subway+Station&ll=40.7549,-73.9873" target="_blank">Times Sq–42nd St station</a>. Tap card.<br>
+                <strong>2.</strong> Follow signs for <strong>Uptown C train</strong>. ⚠️ <strong>C only — not A or E</strong>. The A skips 103rd entirely.<br>
+                <strong>3.</strong> Ride 9 stops to <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a>. Exit onto CPW, turn right, walk 1 block to 106th — hostel on your left.
+              </div>
+            </div>
+          </div>
+          <div class="warn-block"><strong>⚠️ Bus late?</strong> If after 11:30 AM, take the subway regardless and drop the West Village. You still make the show fine.</div>
         </div>
       </div>
     </div>
@@ -202,9 +228,13 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~12:15 PM</div>
         <div class="event-title">Drop bags · Kama Hostel <span class="chevron">▼</span></div>
-        <div class="event-addr">36 W 106th St · Upper West Side</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=36+W+106th+St,+New+York,+NY+10025" target="_blank">36 W 106th St · Upper West Side</a></div>
         <div class="event-expand">
-          <div class="warn-block"><strong>⚠️ Do this now:</strong> Confirm they'll store your bag Friday after checkout. It's usually free, but ask now — your entire Friday afternoon depends on it.</div>
+          <div class="expand-block">
+            <div class="expand-label">🗺 Finding it</div>
+            Exit 103rd St station and you'll be on Central Park West. The hostel is one block east on 106th St — a 2 min walk. Upper West Side is safe, residential, very walkable.
+          </div>
+          <div class="warn-block"><strong>⚠️ Do this now:</strong> Confirm they'll store your bag Friday after checkout. Ask explicitly — your entire Friday afternoon depends on it.</div>
           <div class="expand-block">Room won't be ready until 3 PM officially. That's fine — drop the bag and go.</div>
         </div>
       </div>
@@ -215,11 +245,29 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~12:30 → 1:00 PM</div>
         <div class="event-title">West Village → Lunch <span class="chevron">▼</span></div>
-        <div class="event-addr">Pizza Loves Emily · 35 Downing St</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=35+Downing+St,+New+York,+NY+10014" target="_blank">Pizza Loves Emily · 35 Downing St</a></div>
         <div class="event-expand">
-          <div class="subway-block"><div class="expand-label">🚇 Getting there</div>B or C southbound · <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a> → <a class="stn" href="https://maps.apple.com/?q=W+4th+St+Washington+Sq+Subway+Station&ll=40.7322,-74.0005" target="_blank">W 4th St–Washington Sq</a> · ~20 min</div>
-          <div class="warn-block"><strong>⚠️ Wait risk:</strong> Emily gets a lunch queue. If the wait is over 20 min, bail — you'll be rushed. Backup: Bleecker St Pizza (69 7th Ave S) · no wait · equally great.</div>
-          <div class="expand-block"><div class="expand-label">🚶 After lunch</div>Stroll east: Bleecker St → Christopher St → Washington Square Park → naturally toward Flatiron. This is the most beautiful stretch of the day — enjoy it.</div>
+          <div class="subway-block">
+            <div class="expand-label">🚇 Trip 2 of 8 · Hostel → West Village · ~20 min</div>
+            <strong>1.</strong> Walk out of the hostel, turn left on 106th St to <strong>Central Park West</strong>.<br>
+            <strong>2.</strong> Enter the <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St B/C station</a> — the entrance is right on CPW.<br>
+            <strong>3.</strong> Tap your card. Follow signs for <strong>Downtown B or C</strong>. Either train works here.<br>
+            <strong>4.</strong> Ride to <a class="stn" href="https://maps.apple.com/?q=W+4th+St+Washington+Sq+Subway+Station&ll=40.7322,-74.0005" target="_blank">W 4th St–Washington Sq</a> — about 15 stops, ~20 min.<br>
+            <strong>5.</strong> Exit and follow signs for the <strong>6th Ave exit</strong>. You'll come up right at the edge of the West Village. Turn left onto 6th Ave and you're there.
+          </div>
+          <div class="warn-block">
+            <strong>⚠️ Wait risk:</strong> Emily gets a lunch queue. If the wait is over 20 min, bail — you'll be rushed.<br><br>
+            <strong>Backup A (sit-down):</strong> <a class="pl" href="https://maps.apple.com/?address=51+Grove+St,+New+York,+NY+10014" target="_blank">Via Carota · 51 Grove St</a> · Italian, incredible vegetables, one of the most beloved restaurants in NYC. Worth the slight detour.<br>
+            <strong>Backup B (fast):</strong> <a class="pl" href="https://maps.apple.com/?address=69+7th+Ave+S,+New+York,+NY+10014" target="_blank">Bleecker St Pizza · 69 7th Ave S</a> · no wait, grab a slice and go.
+          </div>
+          <div class="expand-block">
+            <div class="expand-label">🚶 After lunch</div>
+            Stroll east: <a class="pl" href="https://maps.apple.com/?q=Bleecker+St+New+York+NY" target="_blank">Bleecker St</a> → <a class="pl" href="https://maps.apple.com/?q=Christopher+St+New+York+NY" target="_blank">Christopher St</a> → <a class="pl" href="https://maps.apple.com/?address=Washington+Square+Park,+New+York,+NY+10012" target="_blank">Washington Square Park</a> → naturally toward Flatiron. The most beautiful stretch of the day — enjoy it.
+          </div>
+          <div class="expand-block">
+            <div class="expand-label">🗺 First-time tip</div>
+            West Village streets are intentionally winding and don't follow the grid. Don't panic if you feel turned around — just open Maps. The neighborhood is tiny and very safe.
+          </div>
         </div>
       </div>
     </div>
@@ -229,7 +277,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~2:30 PM</div>
         <div class="event-title">Harry Potter Store <span class="chevron">▼</span></div>
-        <div class="event-addr">935 Broadway · Flatiron · Free entry</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=935+Broadway,+New+York,+NY+10010" target="_blank">935 Broadway · Flatiron · Free entry</a></div>
         <div class="event-expand">
           <div class="expand-block">Set a phone alarm for 3:45 PM. This place eats time. You want to leave by 3:45 at the latest to make Starbucks.</div>
           <div class="warn-block"><strong>⚠️ Running behind here?</strong> Skip Starbucks. Head straight back to the hostel. 90 min to get ready is the minimum for the show — don't compromise it for a coffee.</div>
@@ -242,10 +290,18 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~4:00 PM</div>
         <div class="event-title">Starbucks Reserve Roastery <span class="chevron">▼</span></div>
-        <div class="event-addr">61 9th Ave · Chelsea · 0.8 mi from HP store</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=61+9th+Ave,+New+York,+NY+10011" target="_blank">61 9th Ave · Chelsea</a></div>
         <div class="event-expand">
-          <div class="expand-block">Walk west ~15 min. Get your drink to go — this is grab-and-go, not sit-down. Budget $12–18.</div>
-          <div class="subway-block"><div class="expand-label">🚇 Back to hostel</div>A, C or E northbound · <a class="stn" href="https://maps.apple.com/?q=14th+St+Subway+Station+A+C+E&ll=40.7401,-74.0042" target="_blank">14th St</a> → <a class="stn" href="https://maps.apple.com/?q=59th+St+Columbus+Circle+Subway+Station&ll=40.7685,-73.9817" target="_blank">59th St Columbus Circle</a> · switch to B or C → <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a> · ~20 min total</div>
+          <div class="expand-block">Walk west ~15 min from Harry Potter. Get your drink to go — grab-and-go, not sit-down. Budget $12–18.</div>
+          <div class="subway-block">
+            <div class="expand-label">🚇 Trip 3 of 8 · Chelsea → Hostel · ~20 min</div>
+            <strong>1.</strong> From Starbucks, walk 2 blocks east to <strong>8th Ave</strong>.<br>
+            <strong>2.</strong> Enter the <a class="stn" href="https://maps.apple.com/?q=14th+St+Subway+Station+A+C+E&ll=40.7401,-74.0042" target="_blank">14th St A/C/E station</a> on 8th Ave & 14th St.<br>
+            <strong>3.</strong> Tap your card. Follow signs for <strong>Uptown C train</strong>.<br>
+            <strong>4.</strong> ⚠️ Take the <strong>C — not the A or E</strong>. Ride 5 stops to <a class="stn" href="https://maps.apple.com/?q=59th+St+Columbus+Circle+Subway+Station&ll=40.7685,-73.9817" target="_blank">59th St–Columbus Circle</a>.<br>
+            <strong>5.</strong> At Columbus Circle, <strong>do not exit the station</strong>. Follow the signs inside for the <strong>B/C transfer</strong> — it's a short walk through the station.<br>
+            <strong>6.</strong> Board any <strong>B or C northbound</strong>. Ride 5 stops to <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a>. Exit onto Central Park West, walk right to hostel.
+          </div>
         </div>
       </div>
     </div>
@@ -255,10 +311,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~4:45 → 6:00 PM</div>
         <div class="event-title">Back at hostel · Get ready <span class="chevron">▼</span></div>
-        <div class="event-addr">1hr 15min · use every minute</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=36+W+106th+St,+New+York,+NY+10025" target="_blank">Kama Hostel · 36 W 106th St</a></div>
         <div class="event-expand">
-          <div class="expand-block">Shower, dress, makeup. Eat something light — grab from a deli on Amsterdam Ave if you're hungry. Don't rush this, you want to feel good tonight.</div>
-          <div class="warn-block"><strong>⚠️ Leave by 6:00 PM sharp.</strong> Beacon is strict about late entry during songs. Being there at 6:45 gives you a comfortable buffer.</div>
+          <div class="expand-block">Shower, dress, makeup. Eat something light — grab from a deli on <a class="pl" href="https://maps.apple.com/?q=Amsterdam+Ave+New+York+NY+10025" target="_blank">Amsterdam Ave</a> if you're hungry. Don't rush this, you want to feel good tonight.</div>
+          <div class="warn-block"><strong>⚠️ Leave time depends on how you're getting there:</strong> Walking → leave by <strong>6:00 PM</strong>. Subway → leave by <strong>6:30 PM</strong>. Either way you're at Beacon by 6:45 with buffer.</div>
         </div>
       </div>
     </div>
@@ -268,15 +324,62 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">Depart 6:00 PM · Show 7:00 PM</div>
         <div class="event-title">⭐ Sara Bareilles · Beacon Theatre <span class="chevron">▼</span></div>
-        <div class="event-addr">2124 Broadway at 74th St · Arrive by 6:45</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=2124+Broadway,+New+York,+NY+10023" target="_blank">2124 Broadway at 74th St · Arrive by 6:45</a></div>
         <div class="event-expand">
-          <div class="subway-block"><div class="expand-label">🚇 Recommended</div>Line 1 southbound · <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+1+train&ll=40.7995,-73.9682" target="_blank">103rd St</a> → <a class="stn" href="https://maps.apple.com/?q=72nd+St+Subway+Station+1+train&ll=40.7783,-73.9819" target="_blank">72nd St</a> · ~8 min · 2 min walk to theatre</div>
-          <div class="expand-block"><div class="expand-label">🚶 Alternative</div>Walk 1.6 mi south on Broadway · ~30 min · nice if you want to soak it in</div>
-          <div class="warn-block"><strong>⚠️ Have your ticket ready</strong> before joining the line. Screenshot it — don't rely only on the app.</div>
-          <div class="plan-b-block"><strong>🏠 After the show (~9:30 PM):</strong> Subway Line 1 northbound from <a class="stn" href="https://maps.apple.com/?q=72nd+St+Subway+Station+1+train&ll=40.7783,-73.9819" target="_blank">72nd St</a> → <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+1+train&ll=40.7995,-73.9682" target="_blank">103rd St</a> (~8 min) or Uber ($12–18, 10 min). Both totally fine at this hour.</div>
+          <div class="decision-wrap" id="dec-beacon">
+            <div class="decision-pills">
+              <button class="decision-pill walk active" onclick="switchDecision('dec-beacon','walk',this,this.nextElementSibling)">🚶 Walk there</button>
+              <button class="decision-pill subway" onclick="switchDecision('dec-beacon','subway',this.previousElementSibling,this)">🚇 Subway</button>
+            </div>
+            <div class="decision-content walk active">
+              <div class="time-impact">⏱ Leave at 6:00 PM · arrive ~6:30 PM · plenty of buffer</div>
+              <div class="expand-block">
+                <div class="expand-label">🚶 1.6 mi · ~30 min down Broadway</div>
+                Head east from the hostel 1 block to <strong>Broadway</strong>. Turn <strong>right (south)</strong> and walk straight down. Pass 96th, 86th, 79th, 72nd — Beacon marquee at <strong>74th St on your right</strong>. If it's a nice evening this is the one.
+              </div>
+            </div>
+            <div class="decision-content subway">
+              <div class="time-impact">⏱ Leave at 6:30 PM · arrive ~6:45 PM · safe if it's too hot</div>
+              <div class="subway-block">
+                <div class="expand-label">🚇 1 train · ~10 min · arrive fresh</div>
+                Walk east 1 block to <strong>Broadway & 103rd St</strong> — enter the <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+1+train&ll=40.7995,-73.9682" target="_blank">1-train station</a>. ⚠️ This is the <strong>red line</strong> on Broadway — different from your usual B/C on CPW. Tap card, follow signs for <strong>Downtown 1</strong>. Ride 3 stops to <a class="stn" href="https://maps.apple.com/?q=72nd+St+Subway+Station+1+train&ll=40.7783,-73.9819" target="_blank">72nd St</a>. Exit, walk <strong>south 2 blocks</strong> — Beacon is on your right.
+              </div>
+            </div>
+          </div>
+
+          <div class="decision-wrap" id="dec-aftershow" style="margin-top:0.5rem">
+            <div class="expand-label" style="margin-bottom:0.4rem;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--muted)">🏠 After the show (~9:30 PM)</div>
+            <div class="decision-pills">
+              <button class="decision-pill walk active" onclick="switchDecision('dec-aftershow','walk',this,this.nextElementSibling)">🚶 Walk home</button>
+              <button class="decision-pill subway" onclick="switchDecision('dec-aftershow','subway',this.previousElementSibling,this)">🚇 Subway</button>
+            </div>
+            <div class="decision-content walk active">
+              <div class="time-impact">⏱ ~30 min · home by ~10:00 PM · best way to end the night</div>
+              <div class="plan-b-block">
+                Exit onto Broadway. Turn <strong>left (north)</strong> and walk straight up. Pass 79th, 86th, 96th — at <strong>106th St turn left</strong>, hostel mid-block. Stop at <a class="pl" href="https://maps.apple.com/?address=2750+Broadway,+New+York,+NY+10025" target="_blank">Mama's TOO!</a> on the corner on your way. Broadway at 10 PM is alive, well-lit, safe the whole way.
+              </div>
+            </div>
+            <div class="decision-content subway">
+              <div class="time-impact">⏱ ~10 min · home by ~9:45 PM</div>
+              <div class="subway-block">
+                Same <a class="stn" href="https://maps.apple.com/?q=72nd+St+Subway+Station+1+train&ll=40.7783,-73.9819" target="_blank">72nd St station</a> you came from. Take the <strong>1 Uptown</strong> 3 stops to <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+1+train&ll=40.7995,-73.9682" target="_blank">103rd St</a>. Walk north 1 block on Broadway, left on 106th — hostel on your left. Then Mama's TOO! is right there.
+              </div>
+            </div>
+          </div>
+
+          <div class="warn-block" style="margin-top:0.5rem"><strong>⚠️ Have your ticket ready</strong> before joining the line. Screenshot it — don't rely only on the app.</div>
+          <div class="expand-block">
+            <div class="expand-label">🗺 At the venue</div>
+            Doors open ~30–45 min before. There's a bag check — keep your bag small or bring just a crossbody.
+          </div>
+          <div class="expand-block">
+            <div class="expand-label">🍕 Late night dinner — don't skip this</div>
+            <a class="pl" href="https://maps.apple.com/?address=2750+Broadway,+New+York,+NY+10025" target="_blank"><strong>Mama's TOO!</strong> · 2750 Broadway at 106th</a> — 30 seconds from your hostel. <strong>#1 pizza in the world</strong> by Time Out Feb 2026. Open late.
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -285,6 +388,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
   <div class="day-label"><h2>Friday</h2><span class="day-pill">🏛 Museum + Park + Bus</span></div>
 
   <div class="timeline">
+
     <div class="event">
       <div class="event-dot">☕</div>
       <div class="event-card" onclick="toggle(this)">
@@ -292,7 +396,11 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
         <div class="event-title">Breakfast <span class="chevron">▼</span></div>
         <div class="event-addr">Amsterdam Ave · near hostel</div>
         <div class="event-expand">
-          <div class="expand-block"><strong>Sote Coffee Roasters</strong> · 329 Amsterdam Ave at 75th St<br><strong>Maman</strong> · 429 Amsterdam Ave at 81st St · slightly further, nicer vibe</div>
+          <div class="expand-block">
+            <a class="pl" href="https://maps.apple.com/?address=329+Amsterdam+Ave,+New+York,+NY+10023" target="_blank"><strong>Sote Coffee Roasters</strong></a> · 329 Amsterdam Ave at 75th St<br>
+            <a class="pl" href="https://maps.apple.com/?address=429+Amsterdam+Ave,+New+York,+NY+10024" target="_blank"><strong>Maman</strong></a> · 429 Amsterdam Ave at 81st St · slightly further, nicer vibe<br>
+            <a class="pl" href="https://maps.apple.com/?address=2315+Broadway,+New+York,+NY+10024" target="_blank"><strong>Daily Provisions</strong></a> · 2315 Broadway at 84th St · healthy sandwiches and fresh-made food, very neighbourhood feel
+          </div>
           <div class="expand-block">Keep it light. Long walking day ahead. To-go is fine.</div>
         </div>
       </div>
@@ -303,10 +411,17 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~9:15 AM → ~10:00 AM</div>
         <div class="event-title">Central Park walk <span class="chevron">▼</span></div>
-        <div class="event-addr">Enter 106th & CPW · walk south</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?q=Central+Park+106th+St+entrance&ll=40.7979,-73.9580" target="_blank">Enter 106th & CPW · walk south</a></div>
         <div class="event-expand">
-          <div class="expand-block">Exit at 72nd St & 5th Ave. ~45 min walk. Pass the Reservoir, swing by Bethesda Fountain if you cut slightly east. Flat shoes essential.</div>
-          <div class="warn-block"><strong>⚠️ If it's raining:</strong> Skip the park. Take the subway straight from <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a> to <a class="stn" href="https://maps.apple.com/?q=42nd+St+Bryant+Park+Subway+Station&ll=40.7541,-73.9841" target="_blank">42nd St</a> and start with the Library. You can catch the park at 3 PM (after Albertine) when showers usually ease.</div>
+          <div class="expand-block">Exit at <a class="pl" href="https://maps.apple.com/?q=72nd+St+5th+Ave+Central+Park+exit&ll=40.7736,-73.9715" target="_blank">72nd St & 5th Ave</a>. ~45 min walk. Pass the Reservoir, swing by <a class="pl" href="https://maps.apple.com/?address=Bethesda+Fountain,+Central+Park,+New+York,+NY" target="_blank">Bethesda Fountain</a> if you cut slightly east. Flat shoes essential.</div>
+          <div class="expand-block">
+            <div class="expand-label">🗺 First-time tip</div>
+            The park is enormous but easy to navigate. Lamp posts have location markers on them — the first two numbers are the nearest cross street. If you're at a lamp marked "7243" you're near 72nd St.
+          </div>
+          <div class="warn-block">
+            <strong>⚠️ If it's raining · Skip the park, walk to Library instead · ~40 min</strong><br><br>
+            From the hostel, head east to <strong>Amsterdam Ave</strong>, then south. Walk down Amsterdam or Broadway all the way to <strong>42nd St</strong>, then east to 5th Ave. Library is right there. About 2 miles — or take the B/C subway from 103rd St to 42nd St–Bryant Park (~15 min) if it's really coming down.
+          </div>
         </div>
       </div>
     </div>
@@ -316,10 +431,14 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~10:00 → 11:15 AM</div>
         <div class="event-title">NY Public Library <span class="chevron">▼</span></div>
-        <div class="event-addr">476 5th Ave at 42nd St · Free</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=476+5th+Ave,+New+York,+NY+10018" target="_blank">476 5th Ave at 42nd St · Free</a></div>
         <div class="event-expand">
-          <div class="expand-block">Walk south from 72nd & 5th — 1.3 mi past the Plaza Hotel (~25 min). Or 4/5/6 from <a class="stn" href="https://maps.apple.com/?q=68th+St+Hunter+College+Subway+Station&ll=40.7681,-73.9637" target="_blank">68th St–Hunter College</a> to <a class="stn" href="https://maps.apple.com/?q=42nd+St+Grand+Central+Subway+Station&ll=40.7527,-73.9772" target="_blank">42nd St–Grand Central</a> (~5 min).</div>
+          <div class="expand-block">Walk south from 72nd & 5th — 1.3 mi past the <a class="pl" href="https://maps.apple.com/?address=768+5th+Ave,+New+York,+NY+10019" target="_blank">Plaza Hotel</a> (~25 min). Or 4/5/6 from <a class="stn" href="https://maps.apple.com/?q=68th+St+Hunter+College+Subway+Station&ll=40.7681,-73.9637" target="_blank">68th St–Hunter College</a> to <a class="stn" href="https://maps.apple.com/?q=42nd+St+Grand+Central+Subway+Station&ll=40.7527,-73.9772" target="_blank">42nd St–Grand Central</a> (~5 min).</div>
           <div class="expand-block"><strong>Don't miss:</strong> Rose Main Reading Room, 3rd floor. Arrive at opening (10 AM) to beat tour groups. Budget ~45 min here.</div>
+          <div class="expand-block">
+            <div class="expand-label">🗺 First-time tip</div>
+            The library has free bag check and clean bathrooms — use both. The lions out front are named Patience and Fortitude.
+          </div>
         </div>
       </div>
     </div>
@@ -329,11 +448,21 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~11:30 AM → 2:30 PM</div>
         <div class="event-title">MoMA <span class="chevron">▼</span></div>
-        <div class="event-addr">11 W 53rd St · Tickets booked ✓</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=11+W+53rd+St,+New+York,+NY+10019" target="_blank">11 W 53rd St · Tickets booked ✓</a></div>
         <div class="event-expand">
-          <div class="subway-block"><div class="expand-label">🚇 Library → MoMA</div>Walk 0.5 mi north on 5th Ave · ~10 min. Or E/M from <a class="stn" href="https://maps.apple.com/?q=42nd+St+Bryant+Park+Subway+Station&ll=40.7541,-73.9841" target="_blank">42nd St–Bryant Park</a> → <a class="stn" href="https://maps.apple.com/?q=5th+Ave+53rd+St+Subway+Station&ll=40.7601,-73.9762" target="_blank">5th Ave–53rd St</a> (2 stops).</div>
+          <div class="expand-block">
+            <div class="expand-label">🚶 Walk · Library → MoMA · 0.5 mi · ~10 min</div>
+            Exit the library onto <strong>5th Ave</strong>. Turn <strong>left (north)</strong>. Walk 11 blocks straight up 5th Ave. MoMA is on your right at <strong>W 53rd St</strong> — look for the entrance. Flat, simple, no subway needed.
+          </div>
           <div class="warn-block"><strong>⚠️ Time discipline:</strong> You have 3 hours. Pick 2–3 floors, don't try to see everything. Leave by 2:30 PM — Albertine, hostel pickup, Planet Fitness, and the bus are all still ahead.</div>
-          <div class="plan-b-block"><strong>💡 Ran late at MoMA?</strong> Skip Albertine. Go straight to hostel from MoMA, shower there before or after checkout, then head to Port Authority.</div>
+          <div class="expand-block">
+            <div class="expand-label">🍽 Lunch — eat inside this window</div>
+            <a class="pl" href="https://maps.apple.com/?address=11+W+53rd+St,+New+York,+NY+10019" target="_blank"><strong>MoMA Café 2</strong></a> · inside the museum on the 2nd floor · grab something here between floors, saves time<br><br>
+            <strong>Or just outside MoMA:</strong><br>
+            <a class="pl" href="https://maps.apple.com/?address=33+Carmine+St,+New+York,+NY+10014" target="_blank"><strong>Nami Nori</strong></a> · temaki sushi, one of NYC's most praised affordable spots · the W 55th location is closest to MoMA — fresh, light, fast<br>
+            <a class="pl" href="https://maps.apple.com/?q=Chopt+Midtown+New+York" target="_blank"><strong>Chopt</strong></a> · fast salad, multiple Midtown locations · if you want something quick and genuinely healthy
+          </div>
+          <div class="plan-b-block"><strong>💡 Ran late at MoMA?</strong> Skip Albertine. Go straight to hostel from MoMA, shower there before checkout, then head to Port Authority.</div>
         </div>
       </div>
     </div>
@@ -343,9 +472,16 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~2:45 → 3:30 PM</div>
         <div class="event-title">Albertine Books <span class="chevron">▼</span></div>
-        <div class="event-addr">972 5th Ave at 79th St</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=972+5th+Ave,+New+York,+NY+10075" target="_blank">972 5th Ave at 79th St</a></div>
         <div class="event-expand">
           <div class="expand-block">1.3 mi north from MoMA along 5th Ave · ~25 min walk. French-language bookstore inside a gorgeous mansion. Worth seeing even if you don't buy.</div>
+          <div class="expand-block">
+            <div class="expand-label">🚶 Walk · MoMA → Albertine · 1.3 mi · ~25 min</div>
+            Exit MoMA onto <strong>W 53rd St</strong>, turn right to <strong>5th Ave</strong>. Turn <strong>left (north)</strong> and walk up 5th Ave alongside Central Park. Pass 59th, 65th, 72nd, 79th St — <a class="pl" href="https://maps.apple.com/?address=972+5th+Ave,+New+York,+NY+10075" target="_blank">Albertine is at 79th</a>, inside the French Cultural Services building on your right. One of the most beautiful walks in New York.
+          </div>
+          <div class="plan-b-block">
+            <strong>☕ Right after Albertine:</strong> <a class="pl" href="https://maps.apple.com/?address=1000+Madison+Ave,+New+York,+NY+10075" target="_blank">Sant Ambroeus · 1000 Madison Ave at 77th</a> · Italian cafe, 2 min walk. Perfect quick espresso before heading back to the hostel.
+          </div>
           <div class="warn-block"><strong>⚠️ This stop is cuttable.</strong> If you're tired or MoMA ran long, skip it. Never sacrifice the bus schedule for a bookstore detour.</div>
         </div>
       </div>
@@ -356,9 +492,16 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~3:30 → 4:15 PM</div>
         <div class="event-title">Hostel · Pick up bag <span class="chevron">▼</span></div>
-        <div class="event-addr">36 W 106th St · Kama</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=36+W+106th+St,+New+York,+NY+10025" target="_blank">Kama · 36 W 106th St</a></div>
         <div class="event-expand">
-          <div class="subway-block"><div class="expand-label">🚇 Albertine → Hostel</div>4, 5 or 6 southbound · <a class="stn" href="https://maps.apple.com/?q=77th+St+Subway+Station+4+5+6&ll=40.7762,-73.9637" target="_blank">77th St</a> → <a class="stn" href="https://maps.apple.com/?q=59th+St+Lexington+Ave+Subway+Station&ll=40.7625,-73.9676" target="_blank">59th St</a> · switch B or C northbound → <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a> · ~20 min</div>
+          <div class="subway-block">
+            <div class="expand-label">🚇 Trip 7 of 8 · Albertine → Hostel · ~25 min</div>
+            <strong>1.</strong> From Albertine (972 5th Ave), walk <strong>west 2 blocks to Lexington Ave</strong>.<br>
+            <strong>2.</strong> Enter the <a class="stn" href="https://maps.apple.com/?q=77th+St+Subway+Station+4+5+6&ll=40.7762,-73.9637" target="_blank">77th St station</a> — this is the green <strong>4/5/6 line</strong>.<br>
+            <strong>3.</strong> Take the <strong>6 train Downtown</strong> (local — stops everywhere). ⚠️ Don't take the 4 or 5 — they're express and skip stops. Ride 2 stops to <a class="stn" href="https://maps.apple.com/?q=59th+St+Lexington+Ave+Subway+Station&ll=40.7625,-73.9676" target="_blank">59th St–Lexington Ave</a>.<br>
+            <strong>4.</strong> At 59th St, follow the signs inside the station for <strong>B/C transfer</strong>. It's a longer underground walk — keep following the signs, don't exit to the street.<br>
+            <strong>5.</strong> Board any <strong>B or C Uptown</strong>. Ride 5 stops to <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a>. Exit onto Central Park West — hostel is 1 block east.
+          </div>
           <div class="warn-block"><strong>⚠️ Leave hostel by 4:20 PM at the absolute latest.</strong> Everything after this is time-critical for the 7 PM bus.</div>
         </div>
       </div>
@@ -369,11 +512,16 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">~4:45 → 5:45 PM</div>
         <div class="event-title">Planet Fitness · Shower <span class="chevron">▼</span></div>
-        <div class="event-addr">423 W 55th St · 15 min walk from Port Authority</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=423+W+55th+St,+New+York,+NY+10019" target="_blank">423 W 55th St · 15 min walk from Port Authority</a></div>
         <div class="event-expand">
-          <div class="subway-block"><div class="expand-label">🚇 Hostel → Midtown</div>B or C southbound · <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St</a> → <a class="stn" href="https://maps.apple.com/?q=42nd+St+Port+Authority+Subway+Station&ll=40.7572,-74.0051" target="_blank">42nd St–Port Authority</a> · ~15 min</div>
-          <div class="warn-block"><strong>⚠️ Biggest risk of the trip.</strong> If the gym has a wait, won't accept your membership, or has equipment issues — you lose up to 45 min and the bus becomes a real risk.</div>
-          <div class="plan-b-block"><strong>🟢 Smarter play:</strong> Shower at Kama Hostel before picking up your bag at 3:30 PM. Arrive Port Authority already fresh. Eliminates the riskiest move of Friday entirely.</div>
+          <div class="subway-block">
+            <div class="expand-label">🚇 Trip 8 of 8 · Hostel → Port Authority · ~15 min</div>
+            <strong>1.</strong> Enter the <a class="stn" href="https://maps.apple.com/?q=103rd+St+Subway+Station+B+C&ll=40.7981,-73.9628" target="_blank">103rd St B/C station</a> on Central Park West.<br>
+            <strong>2.</strong> Take <strong>B or C Downtown</strong>. Either works. Ride all the way to <a class="stn" href="https://maps.apple.com/?q=42nd+St+Port+Authority+Subway+Station&ll=40.7572,-74.0051" target="_blank">42nd St–Port Authority</a>.<br>
+            <strong>3.</strong> Exit following signs for <strong>8th Ave / Port Authority</strong>. You'll come up directly connected to the bus terminal — follow signs for <strong>Peter Pan / New England</strong> buses once inside.
+          </div>
+          <div class="warn-block"><strong>⚠️ Biggest risk of the trip.</strong> If the gym has a wait, won't accept your membership, or has issues — you lose up to 45 min and the bus becomes a real risk.</div>
+          <div class="plan-b-block"><strong>🟢 Smarter play:</strong> Shower at <a class="pl" href="https://maps.apple.com/?address=36+W+106th+St,+New+York,+NY+10025" target="_blank">Kama Hostel</a> before picking up your bag at 3:30 PM. Arrive Port Authority already fresh. Eliminates the riskiest move of Friday entirely.</div>
           <div class="expand-block">If you do go: walk north on 8th Ave from Port Authority (~15 min), shower, walk back south (~15 min). Budget exactly 60 min total and don't linger.</div>
         </div>
       </div>
@@ -384,14 +532,15 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="event-card" onclick="toggle(this)">
         <div class="event-time">Arrive 6:15 PM · Depart 7:00 PM</div>
         <div class="event-title">Bus home · Port Authority <span class="chevron">▼</span></div>
-        <div class="event-addr">625 8th Ave at 42nd St · Peter Pan Lines</div>
+        <div class="event-addr"><a href="https://maps.apple.com/?address=625+8th+Ave,+New+York,+NY+10018" target="_blank">625 8th Ave at 42nd St · Peter Pan Lines</a></div>
         <div class="event-expand">
           <div class="expand-block">Check the Peter Pan app for your gate before you go in — gates change. Arrive by 6:15 PM. Board early for a good seat.</div>
-          <div class="warn-block"><strong>⚠️ Port Authority is massive.</strong> Finding your gate takes time especially with a bag. 6:15 arrival is the minimum.</div>
-          <div class="plan-b-block"><strong>🍔 Dinner:</strong> Grab food inside Port Authority or on 8th Ave before going in. You'll have time if you arrive at 6:15.</div>
+          <div class="warn-block"><strong>⚠️ Port Authority is massive and chaotic.</strong> Follow the overhead signs for Peter Pan / New England buses once inside. Finding your gate takes time with a bag — 6:15 is the minimum.</div>
+          <div class="plan-b-block"><strong>🍔 Dinner:</strong> Grab food on <a class="pl" href="https://maps.apple.com/?q=8th+Ave+42nd+St+New+York+NY" target="_blank">8th Ave</a> before going in or inside Port Authority. You'll have time if you arrive at 6:15.</div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -399,12 +548,18 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 <div id="map" class="section">
   <div class="sec-head">Tap to open in Maps</div>
   <div class="map-grid">
+    <a class="map-link" href="https://maps.apple.com/?address=2750+Broadway,+New+York,+NY+10025" target="_blank"><span class="map-icon">🍕</span><div><div class="map-name">Mama's TOO! ⭐ #1 pizza world</div><div class="map-addr">2750 Broadway at 106th · 30 sec from hostel</div></div><span class="map-arrow">↗</span></a>
+    <a class="map-link" href="https://maps.apple.com/?address=51+Grove+St,+New+York,+NY+10014" target="_blank"><span class="map-icon">🍝</span><div><div class="map-name">Via Carota</div><div class="map-addr">51 Grove St · West Village · Emily backup</div></div><span class="map-arrow">↗</span></a>
+    <a class="map-link" href="https://maps.apple.com/?address=1000+Madison+Ave,+New+York,+NY+10075" target="_blank"><span class="map-icon">☕</span><div><div class="map-name">Sant Ambroeus</div><div class="map-addr">1000 Madison Ave at 77th · post-Albertine</div></div><span class="map-arrow">↗</span></a>
+    <a class="map-link" href="https://maps.apple.com/?address=2315+Broadway,+New+York,+NY+10024" target="_blank"><span class="map-icon">🥗</span><div><div class="map-name">Daily Provisions</div><div class="map-addr">2315 Broadway at 84th · breakfast option</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=36+W+106th+St,+New+York,+NY+10025" target="_blank"><span class="map-icon">🏨</span><div><div class="map-name">Kama Central Park Hostel</div><div class="map-addr">36 W 106th St · Upper West Side</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=2124+Broadway,+New+York,+NY+10023" target="_blank"><span class="map-icon">🎶</span><div><div class="map-name">Beacon Theatre</div><div class="map-addr">2124 Broadway at 74th St</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=35+Downing+St,+New+York,+NY+10014" target="_blank"><span class="map-icon">🍕</span><div><div class="map-name">Pizza Loves Emily</div><div class="map-addr">35 Downing St · West Village</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=69+7th+Ave+S,+New+York,+NY+10014" target="_blank"><span class="map-icon">🍕</span><div><div class="map-name">Bleecker St Pizza (backup)</div><div class="map-addr">69 7th Ave S · West Village</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=935+Broadway,+New+York,+NY+10010" target="_blank"><span class="map-icon">⚡</span><div><div class="map-name">Harry Potter NY</div><div class="map-addr">935 Broadway · Flatiron</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=61+9th+Ave,+New+York,+NY+10011" target="_blank"><span class="map-icon">☕</span><div><div class="map-name">Starbucks Reserve Roastery</div><div class="map-addr">61 9th Ave · Chelsea</div></div><span class="map-arrow">↗</span></a>
+    <a class="map-link" href="https://maps.apple.com/?address=329+Amsterdam+Ave,+New+York,+NY+10023" target="_blank"><span class="map-icon">☕</span><div><div class="map-name">Sote Coffee Roasters</div><div class="map-addr">329 Amsterdam Ave at 75th St</div></div><span class="map-arrow">↗</span></a>
+    <a class="map-link" href="https://maps.apple.com/?address=429+Amsterdam+Ave,+New+York,+NY+10024" target="_blank"><span class="map-icon">🥐</span><div><div class="map-name">Maman</div><div class="map-addr">429 Amsterdam Ave at 81st St</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=476+5th+Ave,+New+York,+NY+10018" target="_blank"><span class="map-icon">📚</span><div><div class="map-name">NY Public Library</div><div class="map-addr">476 5th Ave at 42nd St</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=11+W+53rd+St,+New+York,+NY+10019" target="_blank"><span class="map-icon">🎨</span><div><div class="map-name">MoMA</div><div class="map-addr">11 W 53rd St · Midtown</div></div><span class="map-arrow">↗</span></a>
     <a class="map-link" href="https://maps.apple.com/?address=972+5th+Ave,+New+York,+NY+10075" target="_blank"><span class="map-icon">📖</span><div><div class="map-name">Albertine Books</div><div class="map-addr">972 5th Ave at 79th St</div></div><span class="map-arrow">↗</span></a>
@@ -414,17 +569,16 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 
   <div class="sec-head" style="margin-top:1.5rem">Quick tips</div>
   <div class="tips-grid">
-    <div class="tip-card tsage"><span class="tip-icon">🚇</span><div class="tip-text"><strong>Your subway hub:</strong> 103rd St (B/C) is right across from the hostel on CPW. Get an unlimited MetroCard if you don't have one — you'll use 8+ rides across both days.</div></div>
+    <div class="tip-card tsage"><span class="tip-icon">🚇</span><div class="tip-text"><strong>Paying for subway:</strong> Tap your bank card directly at the turnstile. $2.90 per ride. Works with Visa, Mastercard, Amex — contactless. No MetroCard needed.</div></div>
     <div class="tip-card twarn"><span class="tip-icon">📱</span><div class="tip-text"><strong>Powerbank is non-negotiable.</strong> Two full days of maps, photos, and tickets will drain your phone. Your Sara Bareilles ticket lives on that phone.</div></div>
     <div class="tip-card twarn"><span class="tip-icon">🌦</span><div class="tip-text"><strong>Friday rain:</strong> Skip the park walk if it's heavy. Library and MoMA are indoors. Pack a small umbrella — Albertine is a 25 min walk exposed.</div></div>
+    <div class="tip-card"><span class="tip-icon">🎒</span><div class="tip-text"><strong>On the subway:</strong> Keep your bag zipped and in front of you. Walk with purpose — even if you're not sure where you're going, look like you are. UWS and Midtown are very safe areas.</div></div>
     <div class="tip-card"><span class="tip-icon">💰</span><div class="tip-text"><strong>Cash buffer:</strong> Bring $80 cash. ATMs in NYC charge $3–5 fees and you don't want to be hunting one when you're tight on time.</div></div>
   </div>
 </div>
 
-<!-- PACK -->
+<!-- CHECKS -->
 <div id="pack" class="section">
-
-  <!-- SUB-TABS -->
   <div class="subtabs">
     <button class="subtab active" onclick="showSub('sub-bag', this)">🎒 In My Bag</button>
     <button class="subtab" onclick="showSub('sub-thu', this)">🎶 Thu Night</button>
@@ -432,14 +586,13 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
     <button class="subtab" onclick="showSub('sub-bus', this)">🚌 Bus Home</button>
   </div>
 
-  <!-- IN MY BAG -->
   <div id="sub-bag" class="subsection active">
     <div class="sub-desc">Always-on you. Check this any time you're about to walk out a door.</div>
     <div class="check-items">
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Phone charged (or powerbank on you)</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Powerbank ⚡</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">ID</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bank card</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bank card (for subway tap + purchases)</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Cash ($80)</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Sara Bareilles ticket (+ screenshot)</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">MoMA ticket (+ screenshot)</span></div>
@@ -449,7 +602,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
     </div>
   </div>
 
-  <!-- THU NIGHT — BEFORE LEAVING FOR SHOW -->
   <div id="sub-thu" class="subsection">
     <div class="sub-desc">Before you walk out to Beacon Theatre Thursday evening.</div>
     <div class="check-items">
@@ -459,39 +611,37 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Sara Bareilles ticket open + screenshotted</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Know your route (Line 1 from 103rd → 72nd)</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Eaten something (long night ahead)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bag small enough for venue (crossbody ideal)</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Room key / locker sorted before leaving</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Leaving by 6:00 PM ⚠️</span></div>
     </div>
   </div>
 
-  <!-- FRI CHECKOUT -->
   <div id="sub-fri" class="subsection">
     <div class="sub-desc">Friday morning checkout. Do this before leaving for breakfast.</div>
     <div class="check-items">
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Charger unplugged from outlet</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Padlock + locker emptied</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Nothing left under the pillow / mattress</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bag stored at front desk (confirm they have it)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Padlock + locker fully emptied</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Check under pillow / mattress</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bag stored at front desk — confirm they have it</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Showered here if skipping Planet Fitness</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Hostel key / wristband returned</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Pick-up time confirmed with front desk</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bag pickup time confirmed with front desk</span></div>
     </div>
   </div>
 
-  <!-- BEFORE BOARDING BUS -->
   <div id="sub-bus" class="subsection">
     <div class="sub-desc">Last check at Port Authority before you board. Do this by 6:15 PM.</div>
     <div class="check-items">
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Gate confirmed on Peter Pan app</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bus ticket on phone (+ screenshot)</span></div>
-      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bag with you (not at hostel)</span></div>
+      <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Bag with you — not at hostel</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Phone charged enough for the ride</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Eaten something before boarding</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">Nothing left at the hostel</span></div>
       <div class="check-item" onclick="tick(this)"><div class="check-box">✓</div><span class="check-label">ID + card + cash on you</span></div>
     </div>
   </div>
-
 </div>
 
 <!-- SOS -->
@@ -505,39 +655,44 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 
   <div class="sos-card swarn">
     <h3><span>🚇</span> Subway delay or confusion</h3>
-    <p>Open the MTA app or Google Maps → transit. Key lines: <strong>B/C</strong> (hostel), <strong>1</strong> (Beacon Theatre), <strong>A/C/E</strong> (Chelsea/Midtown). If a line is down, Google Maps reroutes you in real time. There's always another option.</p>
+    <p>Open Google Maps → transit. Key lines: <strong>B/C</strong> (hostel, 103rd St), <strong>1</strong> (Beacon Theatre, 72nd St), <strong>A/C/E</strong> (Chelsea/Midtown). If a line is down, Google Maps reroutes you in real time. There is always another option.</p>
+  </div>
+
+  <div class="sos-card swarn">
+    <h3><span>😟</span> Feeling lost or overwhelmed</h3>
+    <p>Totally normal. Stop walking, step to the side, open Maps. Every neighborhood you're visiting is safe and touristy. If you need help, ask any store employee, restaurant host, or MTA worker — New Yorkers are brusque but generally helpful if you ask directly.</p>
   </div>
 
   <div class="sos-card sred">
     <h3><span>🎶</span> Running late for the show</h3>
-    <p>If it's past 6:30 PM and you're not moving toward the theatre: <strong>take an Uber directly to Beacon Theatre right now.</strong> ~$15–20 from 106th St. Don't miss Sara over a $18 Uber.</p>
+    <p>If it's past 6:30 PM and you're not moving toward the theatre: <strong>take an Uber directly to <a class="pl" href="https://maps.apple.com/?address=2124+Broadway,+New+York,+NY+10023" target="_blank">Beacon Theatre</a> right now.</strong> ~$15–20 from 106th St. Don't miss Sara over $18.</p>
   </div>
 
   <div class="sos-card swarn">
     <h3><span>📱</span> Phone dying</h3>
-    <p>Priority order if battery is low: <strong>(1)</strong> Screenshot Sara Bareilles ticket. <strong>(2)</strong> Screenshot MoMA ticket. <strong>(3)</strong> Screenshot this page. Then find a Starbucks or McDonald's to charge — most have outlets or ask staff.</p>
+    <p>Priority order: <strong>(1)</strong> Screenshot Sara Bareilles ticket. <strong>(2)</strong> Screenshot MoMA ticket. <strong>(3)</strong> Screenshot this page. Then find a Starbucks or McDonald's to charge — most have outlets near seating, or ask staff.</p>
   </div>
 
   <div class="sos-card swarn">
     <h3><span>💪</span> Planet Fitness won't accept you</h3>
-    <p>Most likely they don't have your home gym in their system. Don't argue — it's not worth the time. Leave and use the <strong>Kama Hostel shower instead</strong> (ask them when you pick up your bag). This is exactly why showering at the hostel is the smarter play.</p>
+    <p>Don't argue — just leave. Use the <a class="pl" href="https://maps.apple.com/?address=36+W+106th+St,+New+York,+NY+10025" target="_blank">Kama Hostel</a> shower instead when you pick up your bag. This is why showering at the hostel is the smarter play.</p>
   </div>
 
   <div class="sos-card sred">
     <h3><span>🚌</span> Risk of missing the 7 PM bus</h3>
-    <p>If it's 6:00 PM and you're not at Port Authority yet: <strong>Uber directly to 625 8th Ave, skip dinner, get on that bus.</strong> The next departure is significantly later and more expensive to change.</p>
+    <p>If it's 6:00 PM and you're not at <a class="pl" href="https://maps.apple.com/?address=625+8th+Ave,+New+York,+NY+10018" target="_blank">Port Authority</a> yet: Uber directly there, skip dinner, get on that bus. The next departure is significantly later.</p>
   </div>
 
   <div class="sos-card ssage">
     <h3><span>💰</span> Budget snapshot</h3>
-    <div class="budget-row"><span>Subway (10 rides est.)</span><span class="amount">~$35</span></div>
+    <div class="budget-row"><span>Subway (tap card · ~10 rides)</span><span class="amount">~$29</span></div>
     <div class="budget-row"><span>Lunch Thursday</span><span class="amount">~$20</span></div>
     <div class="budget-row"><span>Starbucks Reserve</span><span class="amount">~$15</span></div>
     <div class="budget-row"><span>Breakfast Friday</span><span class="amount">~$15</span></div>
     <div class="budget-row"><span>Dinner at Port Authority</span><span class="amount">~$15</span></div>
     <div class="budget-row"><span>Uber post-show (optional)</span><span class="amount">~$18</span></div>
     <div class="budget-row"><span>Emergency buffer</span><span class="amount">~$20</span></div>
-    <div class="budget-total"><span>Total to carry</span><span>$80–100</span></div>
+    <div class="budget-total"><span>Total to carry</span><span>~$80–100</span></div>
   </div>
 
   <div class="sos-card">
@@ -559,16 +714,13 @@ function showTab(id, btn) {
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
 }
-
 function toggle(card) {
   const expand = card.querySelector('.event-expand');
   if (!expand) return;
   const open = expand.classList.toggle('open');
   card.classList.toggle('expanded', open);
 }
-
 function tick(el) { el.classList.toggle('done'); }
-
 function showSub(id, btn) {
   document.querySelectorAll('.subsection').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.subtab').forEach(t => t.classList.remove('active'));
@@ -576,7 +728,15 @@ function showSub(id, btn) {
   btn.classList.add('active');
 }
 
-
+function switchDecision(groupId, choice, walkBtn, subwayBtn) {
+  event.stopPropagation();
+  const group = document.getElementById(groupId);
+  group.querySelectorAll('.decision-content').forEach(c => c.classList.remove('active'));
+  group.querySelectorAll('.decision-pill').forEach(p => p.classList.remove('active'));
+  group.querySelector('.decision-content.' + choice).classList.add('active');
+  if (choice === 'walk') { walkBtn.classList.add('active'); }
+  else { subwayBtn.classList.add('active'); }
+}
 </script>
 </body>
 </html>
